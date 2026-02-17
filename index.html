@@ -4,346 +4,564 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EC Study Hub - Electronics Engineering PYQs</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        .header {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
+            line-height: 1.6;
         }
+
+        /* Main Container with Glassmorphism Effect */
+        .main-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section with Animation */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 20px 0 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: slideDown 1s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         .header h1 {
-            font-size: 48px;
+            font-size: 56px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-text: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 22px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        /* Animated Badge */
+        .ec-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 18px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 20px rgba(102,126,234,0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 40px rgba(102,126,234,0.3);
+        }
+
+        .feature-card i {
+            font-size: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-text: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
         }
-        .header p {
-            font-size: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 80px 20px;
-            background: #f8f9fa;
-            flex-wrap: wrap;
-        }
-        .feature-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 250px;
-        }
+
         .feature-card h3 {
-            font-size: 32px;
-            color: #667eea;
+            font-size: 36px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-text: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
         }
+
         .feature-card p {
-            color: #666;
-        }
-        
-        /* PYQs Section */
-        .pyq-section {
-            padding: 60px 20px;
-            background: white;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .section-subtitle {
-            text-align: center;
-            margin-bottom: 40px;
             color: #666;
             font-size: 18px;
         }
-        .semester-box {
-            background: #f0f4f8;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            border-left: 5px solid #667eea;
+
+        /* PYQs Section */
+        .pyq-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        .semester-title {
-            font-size: 28px;
-            color: #667eea;
-            margin-bottom: 20px;
+
+        .section-title {
             text-align: center;
-        }
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .subject-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            border: 1px solid #dee2e6;
-        }
-        .subject-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
-        }
-        .subject-code {
-            background: #667eea;
-            color: white;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 42px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-text: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 15px;
         }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .semester-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf5 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 2px solid #667eea;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .semester-title {
+            text-align: center;
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .semester-title i {
+            font-size: 40px;
+        }
+
+        /* Subjects Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(102,126,234,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102,126,234,0.3);
+        }
+
+        .subject-code {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+        }
+
         .subject-card h3 {
             color: #333;
-            margin-bottom: 20px;
-            font-size: 20px;
-            min-height: 50px;
+            font-size: 22px;
+            margin-bottom: 25px;
+            min-height: 70px;
         }
+
+        /* Download Button */
         .btn-download {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745, #20c997);
             color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 15px 35px;
+            border-radius: 50px;
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 18px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             width: 100%;
-            max-width: 200px;
+            max-width: 250px;
             margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(40,167,69,0.3);
         }
+
         .btn-download:hover {
-            background: #218838;
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(40,167,69,0.4);
         }
-        
+
+        .btn-download i {
+            font-size: 20px;
+        }
+
         /* Syllabus Section */
         .syllabus-section {
-            padding: 60px 20px;
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
+
         .branch-card {
-            background: white;
-            border-radius: 10px;
-            padding: 40px;
-            text-align: center;
-            max-width: 600px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf5 100%);
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 800px;
             margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border: 2px solid #667eea;
+            border: 3px solid #667eea;
+            position: relative;
+            overflow: hidden;
         }
+
+        .branch-card::after {
+            content: '📡';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
         .branch-card h2 {
-            color: #667eea;
-            font-size: 36px;
+            font-size: 42px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-text: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 15px;
         }
-        .branch-card p {
-            color: #666;
-            margin-bottom: 25px;
-        }
+
         .subjects-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            text-align: left;
-            margin: 30px 0;
-            padding: 20px;
-            background: #f1f3f5;
-            border-radius: 10px;
+            gap: 20px;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 20px;
         }
+
         .subjects-list div {
-            padding: 8px;
-            border-bottom: 1px dashed #667eea;
+            padding: 12px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            font-size: 16px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .subjects-list div i {
+            color: #667eea;
+            font-size: 20px;
+        }
+
         .btn-syllabus {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 15px 40px;
+            border-radius: 50px;
             text-decoration: none;
             display: inline-block;
             font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(102,126,234,0.3);
         }
-        
+
+        .btn-syllabus:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(102,126,234,0.4);
+        }
+
         /* About Section */
         .about {
-            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            margin: 40px 0;
             text-align: center;
-            background: white;
         }
+
         .about h2 {
             font-size: 36px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-text: transparent;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
-            color: #333;
         }
+
         .about p {
+            font-size: 20px;
+            color: #666;
             max-width: 800px;
             margin: 0 auto;
-            color: #666;
-            font-size: 18px;
         }
-        
+
         /* Footer */
         .footer {
-            background: #333;
-            color: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0 20px;
             text-align: center;
-            padding: 40px 20px;
+            color: #666;
         }
+
         .footer p {
             margin-bottom: 10px;
+            font-size: 18px;
         }
-        
+
+        .footer i {
+            color: #667eea;
+            margin: 0 5px;
+        }
+
+        .heart {
+            color: #e74c3c;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header h1 { font-size: 36px; }
-            .section-title { font-size: 28px; }
-            .subjects-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 32px; }
+            .branch-card h2 { font-size: 32px; }
             .subjects-list { grid-template-columns: 1fr; }
+            .semester-box { padding: 20px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Header Section -->
-    <div class="header">
-        <h1>EC Study Hub</h1>
-        <p>Electronics & Communication Engineering - RGPV PYQs & Syllabus</p>
-    </div>
-
-    <!-- Features Section -->
-    <div class="features">
-        <div class="feature-card">
-            <h3>2022-25</h3>
-            <p>EC PYQs Coverage</p>
+    <div class="main-wrapper">
+        <!-- Header Section -->
+        <div class="header">
+            <h1><i class="fas fa-bolt"></i> EC Study Hub <i class="fas fa-microchip"></i></h1>
+            <p>Electronics & Communication Engineering - RGPV PYQs & Syllabus</p>
+            <div class="ec-badge">
+                <i class="fas fa-satellite-dish"></i> सिर्फ EC Branch के लिए <i class="fas fa-satellite-dish"></i>
+            </div>
         </div>
-        <div class="feature-card">
-            <h3>100%</h3>
-            <p>EC Syllabus</p>
-        </div>
-        <div class="feature-card">
-            <h3>Free</h3>
-            <p>Forever Access</p>
-        </div>
-    </div>
 
-    <!-- PYQs Section - Semester 3 EC Subjects with Download Button -->
-    <div class="pyq-section">
-        <div class="container">
-            <h2 class="section-title">📄 Semester 3 PYQs</h2>
+        <!-- Features Section -->
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>2022-25</h3>
+                <p>EC PYQs Coverage</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>100%</h3>
+                <p>EC Syllabus</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-gift"></i>
+                <h3>Free</h3>
+                <p>Forever Access</p>
+            </div>
+        </div>
+
+        <!-- PYQs Section -->
+        <div class="pyq-section">
+            <h2 class="section-title"><i class="fas fa-download"></i> Semester 3 PYQs</h2>
             <p class="section-subtitle">Electronics & Communication Engineering - Unit Wise PYQs</p>
             
             <div class="semester-box">
-                <h3 class="semester-title">📚 EC 3rd Semester Subjects</h3>
+                <h3 class="semester-title">
+                    <i class="fas fa-book-open"></i>
+                    EC 3rd Semester Subjects
+                    <i class="fas fa-book-open"></i>
+                </h3>
                 
                 <div class="subjects-grid">
                     <!-- Subject 1: BT-301 Mathematics-III -->
                     <div class="subject-card">
                         <span class="subject-code">BT-301</span>
                         <h3>Mathematics-III</h3>
-                        <a href="#" class="btn-download">📥 Download PYQs</a>
+                        <a href="https://raw.githubusercontent.com/vishnu7970/vishnu7970.github.io/main/maths-3-pyq.pdf" class="btn-download" download>
+                            <i class="fas fa-download"></i> Download PYQs
+                        </a>
                     </div>
 
                     <!-- Subject 2: EC-302 Electronic Measurement & Instrumentation -->
                     <div class="subject-card">
                         <span class="subject-code">EC-302</span>
                         <h3>Electronic Measurement & Instrumentation</h3>
-                        <a href="#" class="btn-download">📥 Download PYQs</a>
+                        <a href="https://raw.githubusercontent.com/vishnu7970/vishnu7970.github.io/main/emi-pyq.pdf" class="btn-download" download>
+                            <i class="fas fa-download"></i> Download PYQs
+                        </a>
                     </div>
 
                     <!-- Subject 3: EC-303 Digital System Design -->
                     <div class="subject-card">
                         <span class="subject-code">EC-303</span>
                         <h3>Digital System Design</h3>
-                        <a href="#" class="btn-download">📥 Download PYQs</a>
+                        <a href="https://raw.githubusercontent.com/user-attachments/main/files/25372721/digital-design-pyq.pdf" class="btn-download" download>
+                            <i class="fas fa-download"></i> Download PYQs
+                        </a>
                     </div>
 
                     <!-- Subject 4: EC-304 Electronic Devices -->
                     <div class="subject-card">
                         <span class="subject-code">EC-304</span>
                         <h3>Electronic Devices</h3>
-                        <a href="#" class="btn-download">📥 Download PYQs</a>
+                        <a href="https://raw.githubusercontent.com/vishnu7970/vishnu7970.github.io/main/electronic-devices-pyq.pdf" class="btn-download" download>
+                            <i class="fas fa-download"></i> Download PYQs
+                        </a>
                     </div>
 
                     <!-- Subject 5: EC-305 Network Analysis -->
                     <div class="subject-card">
                         <span class="subject-code">EC-305</span>
                         <h3>Network Analysis</h3>
-                        <a href="#" class="btn-download">📥 Download PYQs</a>
+                        <a href="https://raw.githubusercontent.com/vishnu7970/vishnu7970.github.io/main/network-analysis-pyq.pdf" class="btn-download" download>
+                            <i class="fas fa-download"></i> Download PYQs
+                        </a>
                     </div>
                 </div>
             </div>
             
             <!-- More Semesters Note -->
-            <div style="text-align: center; margin-top: 30px; padding: 20px; background: #e9ecef; border-radius: 10px;">
-                <p style="font-size: 16px; color: #495057;">
-                    <strong>📌 अन्य सेमेस्टर के PYQs जल्द ही उपलब्ध होंगे</strong><br>
+            <div style="text-align: center; margin-top: 40px; padding: 20px; background: linear-gradient(135deg, #667eea10, #764ba210); border-radius: 50px;">
+                <p style="font-size: 16px; color: #666;">
+                    <i class="fas fa-clock"></i>
+                    <strong>अन्य सेमेस्टर के PYQs जल्द ही उपलब्ध होंगे</strong><br>
                     अभी केवल Semester 3 के PYQs उपलब्ध हैं
                 </p>
             </div>
         </div>
-    </div>
 
-    <!-- Syllabus Section - Only EC Branch -->
-    <div class="syllabus-section">
-        <div class="container">
-            <h2 class="section-title">📚 EC Branch Syllabus</h2>
+        <!-- Syllabus Section -->
+        <div class="syllabus-section">
+            <h2 class="section-title"><i class="fas fa-book"></i> EC Branch Syllabus</h2>
             
             <div class="branch-card">
-                <h2>ELECTRONICS & COMMUNICATION</h2>
+                <h2><i class="fas fa-microchip"></i> ELECTRONICS & COMMUNICATION</h2>
                 <p>RGPV B.Tech EC Branch - Complete Syllabus (Semester 3)</p>
                 
                 <div class="subjects-list">
-                    <div>📘 BT-301 Mathematics-III</div>
-                    <div>📘 EC-302 Electronic Measurement</div>
-                    <div>📘 EC-303 Digital System Design</div>
-                    <div>📘 EC-304 Electronic Devices</div>
-                    <div>📘 EC-305 Network Analysis</div>
+                    <div><i class="fas fa-check-circle" style="color: #28a745;"></i> BT-301 Mathematics-III</div>
+                    <div><i class="fas fa-check-circle" style="color: #28a745;"></i> EC-302 Electronic Measurement</div>
+                    <div><i class="fas fa-check-circle" style="color: #28a745;"></i> EC-303 Digital System Design</div>
+                    <div><i class="fas fa-check-circle" style="color: #28a745;"></i> EC-304 Electronic Devices</div>
+                    <div><i class="fas fa-check-circle" style="color: #28a745;"></i> EC-305 Network Analysis</div>
                 </div>
                 
-                <a href="#" class="btn-syllabus">View Full Syllabus →</a>
+                <a href="#" class="btn-syllabus">
+                    <i class="fas fa-eye"></i> View Full Syllabus →
+                </a>
             </div>
         </div>
-    </div>
 
-    <!-- About Section -->
-    <div class="about">
-        <h2>सिर्फ EC Branch के लिए</h2>
-        <p>Electronics & Communication Engineering के छात्रों के लिए समर्पित। Semester 3 के सभी subjects के PYQs उपलब्ध।</p>
-    </div>
+        <!-- About Section -->
+        <div class="about">
+            <h2><i class="fas fa-heart heart"></i> सिर्फ EC Branch के लिए</h2>
+            <p>Electronics & Communication Engineering के छात्रों के लिए समर्पित। Semester 3 के सभी subjects के PYQs उपलब्ध।</p>
+        </div>
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>© 2025 EC Study Hub</p>
-        <p>Contact: vishnu7970@gmail.com</p>
-        <p>⚡ Only for Electronics & Communication Engineering</p>
+        <!-- Footer Section -->
+        <div class="footer">
+            <p><i class="fas fa-copyright"></i> 2025 EC Study Hub</p>
+            <p><i class="fas fa-envelope"></i> Contact: vishnu7970@gmail.com</p>
+            <p><i class="fas fa-bolt"></i> Only for Electronics & Communication Engineering <i class="fas fa-bolt"></i></p>
+            <p style="margin-top: 20px; font-size: 14px;">Made with <i class="fas fa-heart heart"></i> by Vishnu</p>
+        </div>
     </div>
-
 </body>
 </html>
